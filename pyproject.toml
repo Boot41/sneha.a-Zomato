@@ -1,0 +1,24 @@
+[project]
+name = "zomato-clone"
+version = "0.1.0"
+description = "A minimal Zomato clone using FastAPI + PostgreSQL"
+authors = [{ name = "Sneha", email = "sneha@example.com" }]
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "psycopg2-binary",
+    "python-dotenv",
+    "bcrypt",
+    "pytest",
+    "httpx"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*" ]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+

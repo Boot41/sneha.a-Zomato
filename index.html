@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zomato Clone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(to bottom right, #fef2f2, #fff7ed);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav-container {
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4rem;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #dc2626;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        .btn-primary {
+            background-color: #dc2626;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #b91c1c;
+        }
+
+        .btn-secondary {
+            background-color: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background-color: #d1d5db;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 5rem 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.75rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #4b5563;
+            margin-bottom: 2rem;
+            max-width: 42rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 42rem;
+            margin: 0 auto 3rem auto;
+        }
+
+        .search-bar {
+            display: flex;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            font-size: 1.125rem;
+            border: none;
+            outline: none;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+
+        .search-btn {
+            background: #dc2626;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .search-btn:hover {
+            background: #b91c1c;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 4rem;
+            height: 4rem;
+            background: #fee2e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+        }
+
+        .feature-icon svg {
+            width: 2rem;
+            height: 2rem;
+            color: #dc2626;
+        }
+
+        .feature h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature p {
+            color: #4b5563;
+        }
+
+        /* Auth Section */
+        .auth-section {
+            background: white;
+            max-width: 56rem;
+            margin: 4rem auto;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth-section h2 {
+            font-size: 1.875rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #111827;
+        }
+
+        .auth-forms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .auth-form h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #374151;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #dc2626;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+
+        .btn-full {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+        }
+
+        /* Dashboard Styles */
+        .dashboard {
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .user-info {
+            background: #dcfce7;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            color: #dc2626;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .restaurants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .restaurant-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            transition: all 0.2s;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-color: #dc2626;
+        }
+
+        .restaurant-card h3 {
+            color: #dc2626;
+            margin-bottom: 0.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .menu-items {
+            margin-top: 1rem;
+        }
+
+        .menu-item {
+            background: #f9fafb;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border-radius: 0.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-item .price {
+            font-weight: 600;
+            color: #dc2626;
+        }
+
+        .order-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .order-status {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-placed {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-delivered {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .success {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+            }
+            
+            .search-btn {
+                border-radius: 0;
+            }
+            
+            .nav-container {
+                padding: 0 1rem;
+            }
+            
+            .hero {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landing-page">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">Zomato Clone</div>
+                <div class="nav-buttons">
+                    <button onclick="showLoginSection()" class="btn btn-secondary">Login</button>
+                    <button onclick="showRegisterSection()" class="btn btn-primary">Sign Up</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>Discover the best food & drinks</h1>
+            <p>Order from your favorite restaurants and get food delivered to your doorstep</p>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Enter your delivery address">
+                    <button class="search-btn" onclick="showLoginSection()">Find Food</button>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3>Fast Delivery</h3>
+                    <p>Get your food delivered in 30 minutes or less</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3>Quality Food</h3>
+                    <p>Fresh ingredients from the best restaurants</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                        </svg>
+                    </div>
+                    <h3>Best Prices</h3>
+                    <p>Affordable prices with great deals and offers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Section -->
+    <div id="login-section" class="auth-section hidden">
+        <h2>Welcome Back!</h2>
+        <div style="max-width: 400px; margin: 0 auto;">
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" autocomplete="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Login</button>
+            </form>
+            <div style="text-align: center; margin-top: 1rem;">
+                <p>Don't have an account? <button onclick="showRegisterSection()" class="btn btn-secondary" style="width: auto; padding: 0.25rem 0.5rem;">Sign Up</button></p>
+                <button onclick="showLandingPage()" class="btn btn-secondary">← Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Section -->
+    <div id="register-section" class="auth-section hidden">
+        <h2>Create Your Account</h2>
+        <div style="max-width: 400px; margin: 0 auto;">
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-name">Name:</label>
+                    <input type="text" id="register-name" autocomplete="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email:</label>
+                    <input type="email" id="register-email" autocomplete="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password:</label>
+                    <input type="password" id="register-password" autocomplete="new-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-role">I am a:</label>
+                    <select id="register-role" required>
+                        <option value="">Select your role</option>
+                        <option value="customer">Customer</option>
+                        <option value="restaurant_owner">Restaurant Owner</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+            </form>
+            <div style="text-align: center; margin-top: 1rem;">
+                <p>Already have an account? <button onclick="showLoginSection()" class="btn btn-secondary" style="width: auto; padding: 0.25rem 0.5rem;">Login</button></p>
+                <button onclick="showLandingPage()" class="btn btn-secondary">← Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Dashboard -->
+    <div id="customer-dashboard" class="dashboard hidden">
+        <div id="customer-user-info" class="user-info"></div>
+        
+        <!-- Restaurants Section -->
+        <div class="section">
+            <h2>Available Restaurants</h2>
+            <button id="refresh-restaurants" class="btn btn-secondary">Refresh Restaurants</button>
+            <div id="restaurants-grid" class="restaurants-grid"></div>
+        </div>
+
+        <!-- Customer Orders Section -->
+        <div class="section">
+            <h2>My Orders</h2>
+            <button id="refresh-customer-orders" class="btn btn-secondary">Refresh Orders</button>
+            <div id="customer-orders-list" class="orders-section"></div>
+        </div>
+
+        <button id="customer-logout-btn" class="btn btn-secondary">Logout</button>
+    </div>
+
+    <!-- Restaurant Owner Dashboard -->
+    <div id="owner-dashboard" class="dashboard hidden">
+        <div id="owner-user-info" class="user-info"></div>
+        
+        <!-- Restaurant Management -->
+        <div class="section">
+            <h2>My Restaurant</h2>
+            <div id="restaurant-details" class="hidden">
+                <div class="restaurant-card" style="margin-bottom: 1rem;">
+                    <h3 id="restaurant-name-display"></h3>
+                    <p id="restaurant-description-display"></p>
+                    <p><strong>Address:</strong> <span id="restaurant-address-display"></span></p>
+                    <p><strong>Phone:</strong> <span id="restaurant-phone-display"></span></p>
+                    <button onclick="showEditRestaurant()" class="btn btn-secondary">Edit Restaurant</button>
+                </div>
+            </div>
+            
+            <div id="restaurant-form-section">
+                <form id="restaurant-form">
+                    <div class="form-group">
+                        <label for="restaurant-name">Restaurant Name:</label>
+                        <input type="text" id="restaurant-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="restaurant-description">Description:</label>
+                        <input type="text" id="restaurant-description">
+                    </div>
+                    <div class="form-group">
+                        <label for="restaurant-address">Address:</label>
+                        <input type="text" id="restaurant-address">
+                    </div>
+                    <div class="form-group">
+                        <label for="restaurant-phone">Phone:</label>
+                        <input type="text" id="restaurant-phone">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Save Restaurant</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Menu Management -->
+        <div class="section">
+            <h2>Menu Management</h2>
+            <div id="menu-form-section" class="hidden">
+                <form id="menu-form">
+                    <div class="form-group">
+                        <label for="menu-item-name">Item Name:</label>
+                        <input type="text" id="menu-item-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="menu-item-price">Price ($):</label>
+                        <input type="number" id="menu-item-price" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="menu-item-category">Category:</label>
+                        <input type="text" id="menu-item-category" placeholder="e.g., Appetizer, Main Course">
+                    </div>
+                    <div class="form-group">
+                        <label for="menu-item-image">Image URL:</label>
+                        <input type="url" id="menu-item-image" placeholder="https://...">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Add Menu Item</button>
+                </form>
+            </div>
+            
+            <div id="menu-items-section">
+                <h3>Current Menu Items</h3>
+                <div id="owner-menu-items"></div>
+            </div>
+        </div>
+
+        <!-- Order Management -->
+        <div class="section">
+            <h2>Order Management</h2>
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                <div class="card" style="text-align: center; padding: 1rem;">
+                    <h3 style="color: #dc2626; margin-bottom: 0.5rem;">Total Orders</h3>
+                    <p id="total-orders" style="font-size: 2rem; font-weight: bold;">0</p>
+                </div>
+                <div class="card" style="text-align: center; padding: 1rem;">
+                    <h3 style="color: #16a34a; margin-bottom: 0.5rem;">Revenue</h3>
+                    <p id="total-revenue" style="font-size: 2rem; font-weight: bold;">$0</p>
+                </div>
+                <div class="card" style="text-align: center; padding: 1rem;">
+                    <h3 style="color: #2563eb; margin-bottom: 0.5rem;">Pending Orders</h3>
+                    <p id="pending-orders" style="font-size: 2rem; font-weight: bold;">0</p>
+                </div>
+            </div>
+            
+            <button id="refresh-owner-orders" class="btn btn-secondary">Refresh Orders</button>
+            <div id="owner-orders-list" class="orders-section"></div>
+        </div>
+
+        <button id="owner-logout-btn" class="btn btn-secondary">Logout</button>
+    </div>
+
+        <!-- Messages -->
+        <div id="message-container"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8047/api';
+        let currentUser = null;
+        let authToken = null;
+
+        // DOM Elements
+        const messageContainer = document.getElementById('message-container');
+        const restaurantsGrid = document.getElementById('restaurants-grid');
+        let currentRestaurant = null;
+
+        // Navigation functions
+        function showLandingPage() {
+            document.getElementById('landing-page').classList.remove('hidden');
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('register-section').classList.add('hidden');
+            document.getElementById('customer-dashboard').classList.add('hidden');
+            document.getElementById('owner-dashboard').classList.add('hidden');
+        }
+
+        function showLoginSection() {
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('login-section').classList.remove('hidden');
+            document.getElementById('register-section').classList.add('hidden');
+            document.getElementById('customer-dashboard').classList.add('hidden');
+            document.getElementById('owner-dashboard').classList.add('hidden');
+        }
+
+        function showRegisterSection() {
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('register-section').classList.remove('hidden');
+            document.getElementById('customer-dashboard').classList.add('hidden');
+            document.getElementById('owner-dashboard').classList.add('hidden');
+        }
+
+        // Show message
+        function showMessage(message, type = 'success') {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = type;
+            messageDiv.textContent = message;
+            messageContainer.innerHTML = '';
+            messageContainer.appendChild(messageDiv);
+            setTimeout(() => messageDiv.remove(), 5000);
+        }
+
+        // API call helper
+        async function apiCall(endpoint, options = {}) {
+            try {
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...(authToken && { 'Authorization': `Bearer ${authToken}` })
+                    },
+                    ...options
+                };
+
+                const response = await fetch(`${API_BASE}${endpoint}`, config);
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.detail || 'API call failed');
+                }
+
+                return data;
+            } catch (error) {
+                console.error('API Error:', error);
+                showMessage(error.message, 'error');
+                throw error;
+            }
+        }
+
+        // Login
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData();
+            formData.append('username', document.getElementById('login-email').value);
+            formData.append('password', document.getElementById('login-password').value);
+
+            try {
+                const response = await fetch(`${API_BASE}/users/login`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.detail || 'Login failed');
+                }
+
+                authToken = data.access_token;
+                currentUser = data.user;
+                showDashboard();
+                showMessage('Login successful!');
+            } catch (error) {
+                showMessage(error.message, 'error');
+            }
+        });
+
+        // Register
+        document.getElementById('register-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const userData = {
+                name: document.getElementById('register-name').value,
+                email: document.getElementById('register-email').value,
+                password: document.getElementById('register-password').value,
+                role: document.getElementById('register-role').value
+            };
+
+            try {
+                const data = await apiCall('/users/register', {
+                    method: 'POST',
+                    body: JSON.stringify(userData)
+                });
+
+                authToken = data.access_token;
+                currentUser = data.user;
+                showDashboard();
+                showMessage('Registration successful!');
+            } catch (error) {
+                showMessage(error.message, 'error');
+            }
+        });
+
+        // Show dashboard based on user role
+        function showDashboard() {
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('register-section').classList.add('hidden');
+            
+            if (currentUser.role === 'customer') {
+                document.getElementById('customer-dashboard').classList.remove('hidden');
+                document.getElementById('owner-dashboard').classList.add('hidden');
+                
+                document.getElementById('customer-user-info').innerHTML = `
+                    <h3>Welcome, ${currentUser.name}!</h3>
+                    <p>Email: ${currentUser.email}</p>
+                    <p>Role: Customer</p>
+                `;
+                
+                loadRestaurants();
+                loadCustomerOrders();
+            } else if (currentUser.role === 'restaurant_owner') {
+                document.getElementById('customer-dashboard').classList.add('hidden');
+                document.getElementById('owner-dashboard').classList.remove('hidden');
+                
+                document.getElementById('owner-user-info').innerHTML = `
+                    <h3>Welcome, ${currentUser.name}!</h3>
+                    <p>Email: ${currentUser.email}</p>
+                    <p>Role: Restaurant Owner</p>
+                `;
+                
+                loadOwnerRestaurant();
+                loadOwnerOrders();
+            }
+        }
+
+        // Restaurant management functions
+        async function loadOwnerRestaurant() {
+            try {
+                const restaurants = await apiCall('/restaurants/');
+                // Find restaurant owned by current user (simplified - in real app, you'd have owner_id field)
+                if (restaurants.length > 0) {
+                    currentRestaurant = restaurants[0]; // For demo, use first restaurant
+                    displayRestaurantDetails(currentRestaurant);
+                    document.getElementById('menu-form-section').classList.remove('hidden');
+                    loadOwnerMenu();
+                }
+            } catch (error) {
+                showMessage('Failed to load restaurant details', 'error');
+            }
+        }
+
+        function displayRestaurantDetails(restaurant) {
+            document.getElementById('restaurant-name-display').textContent = restaurant.name;
+            document.getElementById('restaurant-description-display').textContent = restaurant.description || 'No description';
+            document.getElementById('restaurant-address-display').textContent = restaurant.address || 'No address';
+            document.getElementById('restaurant-phone-display').textContent = restaurant.phone || 'No phone';
+            
+            document.getElementById('restaurant-details').classList.remove('hidden');
+            document.getElementById('restaurant-form-section').classList.add('hidden');
+        }
+
+        function showEditRestaurant() {
+            document.getElementById('restaurant-details').classList.add('hidden');
+            document.getElementById('restaurant-form-section').classList.remove('hidden');
+            
+            // Pre-fill form with current data
+            document.getElementById('restaurant-name').value = currentRestaurant.name;
+            document.getElementById('restaurant-description').value = currentRestaurant.description || '';
+            document.getElementById('restaurant-address').value = currentRestaurant.address || '';
+            document.getElementById('restaurant-phone').value = currentRestaurant.phone || '';
+        }
+
+        // Add/Update restaurant
+        document.getElementById('restaurant-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const restaurantData = {
+                name: document.getElementById('restaurant-name').value,
+                description: document.getElementById('restaurant-description').value,
+                address: document.getElementById('restaurant-address').value,
+                phone: document.getElementById('restaurant-phone').value
+            };
+
+            try {
+                const result = await apiCall('/restaurants/', {
+                    method: 'POST',
+                    body: JSON.stringify(restaurantData)
+                });
+                currentRestaurant = result;
+                showMessage('Restaurant saved successfully!');
+                displayRestaurantDetails(result);
+                document.getElementById('menu-form-section').classList.remove('hidden');
+                loadOwnerMenu();
+            } catch (error) {
+                showMessage(error.message, 'error');
+            }
+        });
+
+        // Load restaurants
+        async function loadRestaurants() {
+            try {
+                const restaurants = await apiCall('/restaurants/');
+                displayRestaurants(restaurants);
+            } catch (error) {
+                showMessage('Failed to load restaurants', 'error');
+            }
+        }
+
+        // Display restaurants
+        function displayRestaurants(restaurants) {
+            restaurantsGrid.innerHTML = '';
+            
+            if (restaurants.length === 0) {
+                restaurantsGrid.innerHTML = '<p>No restaurants available yet.</p>';
+                return;
+            }
+
+            restaurants.forEach(restaurant => {
+                const restaurantCard = document.createElement('div');
+                restaurantCard.className = 'restaurant-card';
+                restaurantCard.innerHTML = `
+                    <h3>${restaurant.name}</h3>
+                    <p><strong>ID:</strong> ${restaurant.id}</p>
+                    <div class="menu-items" id="menu-${restaurant.id}">
+                        <button onclick="loadMenu(${restaurant.id})" class="btn">View Menu</button>
+                    </div>
+                `;
+                restaurantsGrid.appendChild(restaurantCard);
+            });
+        }
+
+        // Load menu for restaurant
+        async function loadMenu(restaurantId) {
+            try {
+                const menuItems = await apiCall(`/menu/${restaurantId}`);
+                const menuContainer = document.getElementById(`menu-${restaurantId}`);
+                
+                if (menuItems.length === 0) {
+                    menuContainer.innerHTML = '<p>No menu items available.</p>';
+                    return;
+                }
+
+                let menuHTML = '<h4>Menu Items:</h4>';
+                menuItems.forEach(item => {
+                    menuHTML += `
+                        <div class="menu-item">
+                            <span>${item.name} (${item.category || 'No category'})</span>
+                            <span class="price">$${item.price}</span>
+                        </div>
+                    `;
+                });
+                menuContainer.innerHTML = menuHTML;
+            } catch (error) {
+                showMessage('Failed to load menu', 'error');
+            }
+        }
+
+        // Menu management for restaurant owners
+        async function loadOwnerMenu() {
+            if (!currentRestaurant) return;
+            
+            try {
+                const menuItems = await apiCall(`/menu/${currentRestaurant.id}`);
+                displayOwnerMenu(menuItems);
+            } catch (error) {
+                showMessage('Failed to load menu items', 'error');
+            }
+        }
+
+        function displayOwnerMenu(menuItems) {
+            const container = document.getElementById('owner-menu-items');
+            container.innerHTML = '';
+            
+            if (menuItems.length === 0) {
+                container.innerHTML = '<p>No menu items yet. Add your first item below!</p>';
+                return;
+            }
+
+            menuItems.forEach(item => {
+                const menuCard = document.createElement('div');
+                menuCard.className = 'menu-item';
+                menuCard.innerHTML = `
+                    <div>
+                        <strong>${item.name}</strong>
+                        <p>${item.category || 'No category'}</p>
+                    </div>
+                    <div>
+                        <span class="price">$${item.price}</span>
+                        <button onclick="deleteMenuItem(${item.id})" class="btn btn-secondary" style="margin-left: 0.5rem; padding: 0.25rem 0.5rem;">Delete</button>
+                    </div>
+                `;
+                container.appendChild(menuCard);
+            });
+        }
+
+        // Add menu item
+        document.getElementById('menu-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!currentRestaurant) {
+                showMessage('Please save your restaurant details first', 'error');
+                return;
+            }
+
+            const menuData = {
+                name: document.getElementById('menu-item-name').value,
+                price: parseFloat(document.getElementById('menu-item-price').value),
+                category: document.getElementById('menu-item-category').value,
+                image: document.getElementById('menu-item-image').value
+            };
+
+            try {
+                await apiCall(`/menu/?restaurant_id=${currentRestaurant.id}`, {
+                    method: 'POST',
+                    body: JSON.stringify(menuData)
+                });
+                showMessage('Menu item added successfully!');
+                document.getElementById('menu-form').reset();
+                loadOwnerMenu();
+            } catch (error) {
+                showMessage(error.message, 'error');
+            }
+        });
+
+        async function deleteMenuItem(itemId) {
+            if (!confirm('Are you sure you want to delete this menu item?')) return;
+            
+            try {
+                await apiCall(`/menu/${itemId}`, { method: 'DELETE' });
+                showMessage('Menu item deleted successfully!');
+                loadOwnerMenu();
+            } catch (error) {
+                showMessage('Failed to delete menu item', 'error');
+            }
+        }
+
+        // Load customer orders
+        async function loadCustomerOrders() {
+            if (!currentUser) return;
+            
+            try {
+                const orders = await apiCall(`/orders/customer/${currentUser.id}`);
+                displayCustomerOrders(orders);
+            } catch (error) {
+                showMessage('Failed to load orders', 'error');
+            }
+        }
+
+        function displayCustomerOrders(orders) {
+            const container = document.getElementById('customer-orders-list');
+            container.innerHTML = '';
+            
+            if (orders.length === 0) {
+                container.innerHTML = '<p>No orders yet.</p>';
+                return;
+            }
+
+            orders.forEach(order => {
+                const orderCard = document.createElement('div');
+                orderCard.className = 'order-card';
+                orderCard.innerHTML = `
+                    <h4>Order #${order.id}</h4>
+                    <p><strong>Restaurant ID:</strong> ${order.restaurant_id}</p>
+                    <p><strong>Total:</strong> $${order.total_price}</p>
+                    <p><strong>Status:</strong> <span class="order-status status-${order.status}">${order.status}</span></p>
+                    <p><strong>Date:</strong> ${new Date(order.created_at).toLocaleDateString()}</p>
+                `;
+                container.appendChild(orderCard);
+            });
+        }
+
+        // Load owner orders and statistics
+        async function loadOwnerOrders() {
+            if (!currentRestaurant) return;
+            
+            try {
+                const orders = await apiCall(`/orders/restaurant/${currentRestaurant.id}`);
+                displayOwnerOrders(orders);
+                updateOrderStatistics(orders);
+            } catch (error) {
+                showMessage('Failed to load restaurant orders', 'error');
+            }
+        }
+
+        function displayOwnerOrders(orders) {
+            const container = document.getElementById('owner-orders-list');
+            container.innerHTML = '';
+            
+            if (orders.length === 0) {
+                container.innerHTML = '<p>No orders yet.</p>';
+                return;
+            }
+
+            orders.forEach(order => {
+                const orderCard = document.createElement('div');
+                orderCard.className = 'order-card';
+                orderCard.innerHTML = `
+                    <h4>Order #${order.id}</h4>
+                    <p><strong>Customer ID:</strong> ${order.customer_id}</p>
+                    <p><strong>Total:</strong> $${order.total_price}</p>
+                    <p><strong>Status:</strong> <span class="order-status status-${order.status}">${order.status}</span></p>
+                    <p><strong>Date:</strong> ${new Date(order.created_at).toLocaleDateString()}</p>
+                    ${order.status === 'placed' ? `<button onclick="updateOrderStatus(${order.id}, 'delivered')" class="btn btn-primary" style="margin-top: 0.5rem;">Mark as Delivered</button>` : ''}
+                `;
+                container.appendChild(orderCard);
+            });
+        }
+
+        function updateOrderStatistics(orders) {
+            const totalOrders = orders.length;
+            const totalRevenue = orders.reduce((sum, order) => sum + parseFloat(order.total_price), 0);
+            const pendingOrders = orders.filter(order => order.status === 'placed').length;
+
+            document.getElementById('total-orders').textContent = totalOrders;
+            document.getElementById('total-revenue').textContent = `$${totalRevenue.toFixed(2)}`;
+            document.getElementById('pending-orders').textContent = pendingOrders;
+        }
+
+        async function updateOrderStatus(orderId, status) {
+            try {
+                await apiCall(`/orders/${orderId}`, {
+                    method: 'PATCH',
+                    body: JSON.stringify({ status })
+                });
+                showMessage('Order status updated successfully!');
+                loadOwnerOrders();
+            } catch (error) {
+                showMessage('Failed to update order status', 'error');
+            }
+        }
+
+        // Event listeners for refresh buttons
+        document.getElementById('refresh-restaurants').addEventListener('click', loadRestaurants);
+        document.getElementById('refresh-customer-orders').addEventListener('click', loadCustomerOrders);
+        document.getElementById('refresh-owner-orders').addEventListener('click', loadOwnerOrders);
+
+        // Logout buttons
+        document.getElementById('customer-logout-btn').addEventListener('click', () => {
+            currentUser = null;
+            authToken = null;
+            currentRestaurant = null;
+            showLandingPage();
+            messageContainer.innerHTML = '';
+            showMessage('Logged out successfully!');
+        });
+
+        document.getElementById('owner-logout-btn').addEventListener('click', () => {
+            currentUser = null;
+            authToken = null;
+            currentRestaurant = null;
+            showLandingPage();
+            messageContainer.innerHTML = '';
+            showMessage('Logged out successfully!');
+        });
+
+        // Make functions globally available
+        window.loadMenu = loadMenu;
+        window.showEditRestaurant = showEditRestaurant;
+        window.deleteMenuItem = deleteMenuItem;
+        window.updateOrderStatus = updateOrderStatus;
+    </script>
+</body>
+</html>
