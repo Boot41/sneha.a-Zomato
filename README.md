@@ -1,6 +1,6 @@
 # Zomato Clone - Food Ordering Platform
 
-## 📋 Project Overview
+# Project Overview
 
 This is a comprehensive food ordering platform built as a Zomato clone using **FastAPI** and **PostgreSQL**. The application provides a complete ecosystem for food delivery services with separate dashboards for restaurant owners and customers.
 
@@ -9,7 +9,7 @@ This is a comprehensive food ordering platform built as a Zomato clone using **F
 - **Customer Dashboard**: Users can register, browse restaurants, view menus, place orders, and track their order history
 - **Admin Features**: Complete order management and user management system
 
-## 🎥 Demo Videos
+##  Demo Videos
 
 Watch the application in action:
 
@@ -23,7 +23,7 @@ Watch the application in action:
    - Restaurant browsing and menu viewing
    - Order placement and tracking
 
-## ✨ Features
+##  Features
 
 ###  Authentication & User Management
 - ✅ User Registration & Login (Customers & Restaurant Owners)
@@ -44,7 +44,7 @@ Watch the application in action:
 - ✅ Place Orders with Multiple Items
 -
 
-### 📊 Order Management
+###  Order Management
 - ✅ Real-time Order Processing
 - ✅ Order Total Calculation with Item Quantities
 - ✅ Revenue Tracking per Restaurant
